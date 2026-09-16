@@ -10,6 +10,7 @@ body {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   background-color: var(--color-fondo);
   color: #333333;
+  background-color: #ffffff;
 }
 
 /* Barra Superior Naranja (Transparencia & Lobby) */
@@ -69,6 +70,7 @@ body {
 }
 
 .navbar-dark .navbar-nav .nav-link {
+  font-size: 1rem;
   color: #ffffff !important;
   font-weight: 500;
   padding: 0.6rem 1rem;
@@ -363,4 +365,22 @@ footer h5 {
 
 .redes-sociales a:hover {
   color: var(--color-naranja);
+}
+
+@media (max-width: 1150px) {
+ .navbar-dark .navbar-nav .nav-link {
+    font-size: 0.72rem;
+  } 
+}
+
+
+@media (max-width: 768px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 1.5em;
+  }
+  .navbar-dark .navbar-nav .nav-link {
+  font-size: 0.875rem;
+
+}
 }

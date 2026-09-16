@@ -1,5 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
-  // Modal para noticias y servicios
+document.addEventListener('footerLoaded', () => {
   const serviceModal = new bootstrap.Modal(document.getElementById('genericModal'));
   const modalTitle = document.getElementById('modalTitle');
   const modalBody = document.getElementById('modalBody');
