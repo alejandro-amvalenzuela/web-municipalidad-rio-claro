@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="denuncias.css">
+
+    <title>Portal de Denuncias - Municipalidad de Río Claro</title>
+</head>
+
+<body>
+
+  <!-- Menu completo -->
+  <div id="navbar-container"></div>
+
+  <!-- link superior de la pagina -->
+  <div class="link-home">
+    <figure>
+      <figcaption>
+        <img src="../../assets/logoRioClaro.png" alt="Logo Río Claro" width="220" height="90" />
+      </figcaption>
+    </figure>
+    <ol>
+        <li><a href="../../index.html">Inicio</a></li>
+        <li class="lkm">>></li>
+        <li>Denuncias</li>
+    </ol>
+  </div>
+
+  <main id="content" class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-8">
+        
+        <div class="card shadow-sm border-0 rounded-4 overflow-hidden mb-5">
+          <!-- Card Header -->
+          <div class="card-header bg-municipal text-white p-4">
+            <h2 class="fw-bold mb-1">DENUNCIAS</h2>
+            <p class="mb-0 text-white-50">Portal de denuncias por Tenencia Irresponsable de Mascotas y Medioambientales.</p>
+          </div>
+
+          <!-- Card Body -->
+          <div class="card-body p-4 p-md-5">
+
+            <p class="text-danger small fw-semibold mb-4">* Indica que la pregunta es obligatoria</p>
+
+            <form id="denunciaForm" novalidate>
+              
+              <!-- Correo Electrónico -->
+              <div class="mb-4">
+                <label for="emailInput" class="form-label fw-bold">Correo electrónico <span class="text-danger">*</span></label>
+                <input type="email" class="form-control form-control-lg" id="emailInput" name="email" placeholder="ejemplo@correo.com" required>
+                <div class="invalid-feedback">Por favor ingrese un correo electrónico válido.</div>
+              </div>
+
+              <!-- Tipo de Denuncia -->
+              <div class="mb-4">
+                <label class="form-label fw-bold d-block">TIPO DE DENUNCIA <span class="text-danger">*</span></label>
+                
+                <div class="form-check custom-radio mb-2 p-3 border rounded-3">
+                  <input class="form-check-input" type="radio" name="tipoDenuncia" id="tipoMascotas" value="Tenencia Irresponsable de mascotas" required>
+                  <label class="form-check-input-label fw-semibold ms-2" for="tipoMascotas">
+                    Tenencia Irresponsable de mascotas
+                  </label>
+                </div>
+
+                <div class="form-check custom-radio p-3 border rounded-3">
+                  <input class="form-check-input" type="radio" name="tipoDenuncia" id="tipoMedioambiental" value="Medioambiental" required>
+                  <label class="form-check-input-label fw-semibold ms-2" for="tipoMedioambiental">
+                    Medioambiental
+                  </label>
+                </div>
+                <div class="invalid-feedback d-block text-danger mt-1 opacity-0" id="tipoDenunciaError">Por favor seleccione un tipo de denuncia.</div>
+              </div>
+
+              <!-- Nombre -->
+              <div class="mb-4">
+                <label for="nombreInput" class="form-label fw-bold">NOMBRE <span class="text-danger">*</span></label>
+                <input type="text" class="form-control form-control-lg" id="nombreInput" name="nombre" placeholder="Nombre completo" required>
+                <div class="invalid-feedback">El nombre es obligatorio.</div>
+              </div>
+
+              <!-- RUT -->
+              <div class="mb-4">
+                <label for="rutInput" class="form-label fw-bold">RUT</label>
+                <input type="text" class="form-control form-control-lg" id="rutInput" name="rut" placeholder="12.345.678-9">
+              </div>
+
+              <!-- Teléfono -->
+              <div class="mb-4">
+                <label for="telefonoInput" class="form-label fw-bold">TELÉFONO <span class="text-danger">*</span></label>
+                <input type="tel" class="form-control form-control-lg" id="telefonoInput" name="telefono" placeholder="+56 9 1234 5678" required>
+                <div class="invalid-feedback">El teléfono de contacto es obligatorio.</div>
+              </div>
+
+              <!-- Antecedentes a Denunciar -->
+              <div class="mb-4">
+                <label for="antecedentesInput" class="form-label fw-bold">ANTECEDENTES A DENUNCIAR <span class="text-danger">*</span></label>
+                <textarea class="form-control form-control-lg" id="antecedentesInput" name="antecedentes" rows="5" placeholder="Describa detalladamente los hechos, lugar, fechas u otros antecedentes..." required></textarea>
+                <div class="invalid-feedback">Por favor indique los antecedentes a denunciar.</div>
+              </div>
+
+              <!-- Medios de Comprobación -->
+              <div class="mb-4">
+                <label for="archivosInput" class="form-label fw-bold">MEDIOS DE COMPROBACIÓN</label>
+                <p class="text-muted small mb-2">Sube hasta 10 archivos compatibles. El tamaño máximo es de 1 GB por archivo.</p>
+                <input type="file" class="form-control form-control-lg" id="archivosInput" name="archivos" multiple accept="image/*,video/*,.pdf,.doc,.docx">
+                <div id="fileListPreview" class="mt-2 text-muted small"></div>
+              </div>
+
+              <!-- Success Alert (Hidden by default) -->
+              <div id="successAlert" class="alert alert-success d-none rounded-3 mb-4" role="alert">
+                <h5 class="alert-heading fw-bold">¡Denuncia Registrada con Éxito!</h5>
+                <p class="mb-0">Los datos de su denuncia han sido capturados correctamente e impresos en la consola del navegador (`console.log`). Gracias por contribuir a la comunidad.</p>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-naranja btn-lg fw-bold py-3">
+                  Enviar Denuncia
+                </button>
+              </div>
+
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer-container"></div>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom JS -->
+  <script src="../../script.js"></script>
+  <script src="../../scriptMenu.js"></script>
+  <script src="../../scriptFooter.js"></script>
+
+  <!-- Script del Formulario de Denuncias -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('denunciaForm');
+      const archivosInput = document.getElementById('archivosInput');
+      const fileListPreview = document.getElementById('fileListPreview');
+      const successAlert = document.getElementById('successAlert');
+      const tipoDenunciaError = document.getElementById('tipoDenunciaError');
+
+      // Archivo preview
+      archivosInput.addEventListener('change', () => {
+        const files = Array.from(archivosInput.files);
+        if (files.length > 10) {
+          alert('Ha seleccionado más de 10 archivos. Por favor seleccione hasta un máximo de 10 archivos.');
+          archivosInput.value = '';
+          fileListPreview.innerHTML = '';
+          return;
+        }
+
+        if (files.length > 0) {
+          fileListPreview.innerHTML = `<strong>Archivos seleccionados (${files.length}):</strong><ul class="mb-0 ps-3">` +
+            files.map(f => `<li>${f.name} (${(f.size / (1024*1024)).toFixed(2)} MB)</li>`).join('') +
+            `</ul>`;
+        } else {
+          fileListPreview.innerHTML = '';
+        }
+      });
+
+      // Submit listener
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        let isValid = form.checkValidity();
+        const tipoDenunciaSelected = form.querySelector('input[name="tipoDenuncia"]:checked');
+        
+        if (!tipoDenunciaSelected) {
+          isValid = false;
+          tipoDenunciaError.classList.remove('opacity-0');
+        } else {
+          tipoDenunciaError.classList.add('opacity-0');
+        }
+
+        form.classList.add('was-validated');
+
+        if (!isValid) {
+          return;
+        }
+
+        const filesData = Array.from(archivosInput.files).map((f, index) => ({
+          index: index + 1,
+          nombre: f.name,
+          tamanoBytes: f.size,
+          tamanoMB: (f.size / (1024 * 1024)).toFixed(2) + ' MB',
+          tipo: f.type
+        }));
+
+        const datosDenuncia = {
+          fechaRegistro: new Date().toLocaleString(),
+          email: form.email.value.trim(),
+          tipoDenuncia: tipoDenunciaSelected.value,
+          nombre: form.nombre.value.trim(),
+          rut: form.rut.value.trim() || 'No proporcionado',
+          telefono: form.telefono.value.trim(),
+          antecedentes: form.antecedentes.value.trim(),
+          totalArchivos: filesData.length,
+          archivosAdjuntos: filesData
+        };
+
+        // Imprimir datos capturados en consola
+        console.log("==========================================");
+        console.log("NUEVA DENUNCIA REGISTRADA CON ÉXITO");
+        console.log("==========================================");
+        console.table(datosDenuncia);
+        console.log("Detalles completos JSON:", JSON.stringify(datosDenuncia, null, 2));
+
+        // Mostrar notificación de éxito en la página
+        successAlert.classList.remove('d-none');
+        successAlert.scrollIntoView({ behavior: 'smooth' });
+
+        // Limpiar formulario
+        form.reset();
+        form.classList.remove('was-validated');
+        fileListPreview.innerHTML = '';
+      });
+    });
+  </script>
+
+</body>
+</html>
