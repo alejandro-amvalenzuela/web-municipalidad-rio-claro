@@ -71,11 +71,18 @@ body {
   margin: 0 10px;
 }
 
+#navbar-container {
+  display: contents;
+}
+
 /* Menu Superior Principal - Color #004D79 con letras blancas */
 .bg-municipal {
   background-color: var(--color-principal) !important;
   border-bottom: 3px solid var(--color-naranja);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1030 !important;
 }
 
 .navbar-logo {
@@ -498,6 +505,14 @@ footer {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0.75rem 1.5rem;
+}
+
+.link-home img {
+  width: auto;
+  max-width: 260px;
+  height: auto;
+  max-height: 85px;
+  object-fit: contain;
 }
 
 .link-home ol {

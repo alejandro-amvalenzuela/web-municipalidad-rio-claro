@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../../assets/icon.png" type="image/png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="concursos.css">
+</head>
+<body>
+
+  <div id="navbar-container"></div>
+
+  <div class="link-home">
+    <figure>
+      <figcaption>
+        <img src="../../assets/logoRioClaro.png" alt="Logo Río Claro" />
+      </figcaption>
+    </figure>
+    <ol>
+      <li><a href="../../index.html">Inicio</a></li>
+      <li class="lkm">>></li>
+      <li>Bases Concursos Públicos</li>
+    </ol>
+  </div>
+
+  <main id="content" class="container my-5">
+    <div class="text-center mb-5">
+      <img src="../../assets/muni.png" alt="Logo Municipalidad de Río Claro" style="max-height:90px; margin-bottom: 15px;">
+      <h1 class="fw-bold text-municipal mb-1">Bases Concursos Públicos</h1>
+      <p class="text-muted">Concursos públicos y convocatorias vigentes</p>
+    </div>
+
+    <div class="d-flex justify-content-center gap-2 mb-4 flex-wrap">
+      <button class="btn btn-naranja filtro-btn active" data-filtro="todos">Todos</button>
+      <button class="btn btn-outline-success filtro-btn" data-filtro="vigente">Vigentes</button>
+      <button class="btn btn-outline-secondary filtro-btn" data-filtro="resuelto">Resueltos</button>
+    </div>
+
+    <div class="row g-3" id="lista-concurso">
+
+      <div class="col-12 concurso-item" data-estado="vigente">
+        <div class="card-concurso d-flex align-items-center p-4 justify-content-between flex-wrap gap-3">
+          <div class="d-flex align-items-center gap-3">
+            <i class="bi bi-file-earmark-text fs-2 text-naranja"></i>
+            <div>
+              <h5 class="mb-1 fw-bold text-municipal">Jefatura Tesorería Municipal</h5>
+              <p class="mb-0 text-muted small">Concurso público para jefatura de tesorería</p>
+            </div>
+          </div>
+          <div class="d-flex align-items-center gap-3">
+            <span class="badge rounded-pill bg-success">Vigente</span>
+            <a href="#" class="btn btn-sm btn-naranja btn-modal" data-title="Bases Jefatura Tesorería Municipal" data-text="Accediendo a las bases del concurso público para el cargo de Jefatura de Tesorería Municipal.">Ver bases</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 concurso-item" data-estado="resuelto">
+        <div class="card-concurso d-flex align-items-center p-4 justify-content-between flex-wrap gap-3">
+          <div class="d-flex align-items-center gap-3">
+            <i class="bi bi-file-earmark-text fs-2 text-naranja"></i>
+            <div>
+              <h5 class="mb-1 fw-bold text-municipal">Director CESFAM</h5>
+              <p class="mb-0 text-muted small">Concurso público para director de CESFAM</p>
+            </div>
+          </div>
+          <div class="d-flex align-items-center gap-3">
+            <span class="badge rounded-pill bg-secondary">Resuelto</span>
+            <a href="#" class="btn btn-sm btn-naranja btn-modal" data-title="Bases Director CESFAM" data-text="Concurso resuelto para el cargo de Director del Centro de Salud Familiar.">Ver bases</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 concurso-item" data-estado="vigente">
+        <div class="card-concurso d-flex align-items-center p-4 justify-content-between flex-wrap gap-3">
+          <div class="d-flex align-items-center gap-3">
+            <i class="bi bi-file-earmark-text fs-2 text-naranja"></i>
+            <div>
+              <h5 class="mb-1 fw-bold text-municipal">Base Grado 17° Auxiliar</h5>
+              <p class="mb-0 text-muted small">Concurso público para cargo de auxiliar grado 17°</p>
+            </div>
+          </div>
+          <div class="d-flex align-items-center gap-3">
+            <span class="badge rounded-pill bg-success">Vigente</span>
+            <a href="#" class="btn btn-sm btn-naranja btn-modal" data-title="Bases Auxiliar Grado 17°" data-text="Accediendo a las bases del concurso público para el cargo de Auxiliar Grado 17°.">Ver bases</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 concurso-item" data-estado="resuelto">
+        <div class="card-concurso d-flex align-items-center p-4 justify-content-between flex-wrap gap-3">
+          <div class="d-flex align-items-center gap-3">
+            <i class="bi bi-file-earmark-text fs-2 text-naranja"></i>
+            <div>
+              <h5 class="mb-1 fw-bold text-municipal">Asistente de Cuidados</h5>
+              <p class="mb-0 text-muted small">Programa Red Local de Apoyos y Cuidados</p>
+            </div>
+          </div>
+          <div class="d-flex align-items-center gap-3">
+            <span class="badge rounded-pill bg-secondary">Resuelto</span>
+            <a href="#" class="btn btn-sm btn-naranja btn-modal" data-title="Bases Asistente de Cuidados" data-text="Concurso resuelto para el programa Red Local de Apoyos y Cuidados.">Ver bases</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 concurso-item" data-estado="resuelto">
+        <div class="card-concurso d-flex align-items-center p-4 justify-content-between flex-wrap gap-3">
+          <div class="d-flex align-items-center gap-3">
+            <i class="bi bi-file-earmark-text fs-2 text-naranja"></i>
+            <div>
+              <h5 class="mb-1 fw-bold text-municipal">Kinesiólogo/a Servicios Especializados</h5>
+              <p class="mb-0 text-muted small">Programa Red Local de Apoyos y Cuidados</p>
+            </div>
+          </div>
+          <div class="d-flex align-items-center gap-3">
+            <span class="badge rounded-pill bg-secondary">Resuelto</span>
+            <a href="#" class="btn btn-sm btn-naranja btn-modal" data-title="Bases Kinesiólogo/a" data-text="Concurso resuelto para Kinesiólogo/a de Servicios Especializados.">Ver bases</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 concurso-item" data-estado="vigente">
+        <div class="card-concurso d-flex align-items-center p-4 justify-content-between flex-wrap gap-3">
+          <div class="d-flex align-items-center gap-3">
+            <i class="bi bi-file-earmark-text fs-2 text-naranja"></i>
+            <div>
+              <h5 class="mb-1 fw-bold text-municipal">Encargado/a Programa Red Local</h5>
+              <p class="mb-0 text-muted small">Programa Red Local de Apoyos y Cuidados</p>
+            </div>
+          </div>
+          <div class="d-flex align-items-center gap-3">
+            <span class="badge rounded-pill bg-success">Vigente</span>
+            <a href="#" class="btn btn-sm btn-naranja btn-modal" data-title="Bases Encargado/a Red Local" data-text="Accediendo a las bases para el cargo de Encargado/a del programa Red Local de Apoyos y Cuidados.">Ver bases</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <div id="footer-container"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../script.js"></script>
+  <script src="../../scriptMenu.js"></script>
+  <script src="../../scriptFooter.js"></script>
+  <script src="concursos.js"></script>
+
+</body>
+</html>

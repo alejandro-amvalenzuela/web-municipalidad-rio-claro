@@ -1,0 +1,26 @@
+.text-naranja {
+  color: var(--color-naranja) !important;
+}
+
+.text-municipal {
+  color: var(--color-principal) !important;
+}
+
+.card-concurso {
+  background: #ffffff;
+  border: 2px solid #e9ecef;
+  border-radius: 10px;
+  transition: all 0.25s ease;
+}
+
+.card-concurso:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08);
+  border-color: var(--color-naranja);
+}
+
+.filtro-btn.active {
+  background-color: var(--color-naranja) !important;
+  color: white !important;
+  border-color: var(--color-naranja) !important;
+}

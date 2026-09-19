@@ -1,0 +1,27 @@
+.pagos-en-linea .row > [class*="col-"] {
+  width: 100% !important;
+  flex: 0 0 100% !important;
+  max-width: 100% !important;
+}
+
+.card-pago {
+  background-color: #ffffff;
+  border: 2px solid var(--color-naranja);
+  border-radius: 10px;
+  transition: all 0.25s ease;
+  color: inherit;
+}
+
+.card-pago:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-principal);
+}
+
+.text-naranja {
+  color: var(--color-naranja) !important;
+}
+
+.text-municipal {
+  color: var(--color-principal) !important;
+}
