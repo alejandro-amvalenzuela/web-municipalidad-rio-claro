@@ -1,0 +1,111 @@
+<app-header></app-header>
+
+<div class="link-home">
+  <figure class="m-0 mb-2">
+    <img src="assets/logoRioClaro.png" alt="Logo Río Claro" />
+  </figure>
+  <ol>
+    <li><a routerLink="/">Inicio</a></li>
+    <li class="lkm">&gt;&gt;</li>
+    <li><a routerLink="/pagos">Pagos en Línea</a></li>
+    <li class="lkm">&gt;&gt;</li>
+    <li>Historial de Pagos</li>
+  </ol>
+</div>
+
+<main class="container my-4">
+  <div class="text-center mb-5">
+    <img src="assets/muni.png" alt="Logo Municipalidad de Río Claro" style="max-height:85px; margin-bottom: 12px;">
+    <h1 class="fw-bold text-municipal mb-1">Historial de Pagos Realizados</h1>
+    <p class="text-muted">Registro de permisos de circulación cancelados en la plataforma municipal</p>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-10">
+      
+      <!-- Panel de Utilidad de Pruebas Docente -->
+      <div class="card border-0 bg-light rounded-4 p-3 mb-4 d-flex flex-row justify-content-between align-items-center flex-wrap gap-2 shadow-sm">
+        <div class="d-flex align-items-center gap-2">
+          <i class="bi bi-arrow-counterclockwise fs-4 text-municipal"></i>
+          <div>
+            <strong class="text-municipal d-block small">Reinicio de Datos de Demostración</strong>
+            <span class="text-muted small">Restaura los vehículos y permisos iniciales y vacía el historial de pagos.</span>
+          </div>
+        </div>
+        <button type="button" class="btn btn-outline-danger btn-sm px-3 fw-bold rounded-pill" (click)="reiniciarDatos()">
+          <i class="bi bi-trash3 me-1"></i> Reiniciar Datos de Prueba
+        </button>
+      </div>
+
+      @if (mensajeReinicio) {
+        <div class="alert alert-success border-0 rounded-3 shadow-sm mb-4">
+          <i class="bi bi-check-circle-fill me-2"></i> {{ mensajeReinicio }}
+        </div>
+      }
+
+      @if (pagos.length === 0) {
+        <div class="card border-0 shadow-sm rounded-4 p-5 text-center bg-white">
+          <i class="bi bi-clock-history fs-1 text-muted mb-3 d-block"></i>
+          <h4 class="fw-bold text-municipal">No hay pagos registrados todavía</h4>
+          <p class="text-muted">Cuando realices el pago de un permiso de circulación, aparecerá registrado en esta sección.</p>
+          <div class="mt-3">
+            <a routerLink="/busqueda" class="btn btn-naranja px-4 py-2 fw-semibold">
+              <i class="bi bi-search me-1"></i> Buscar un Permiso y Pagar
+            </a>
+          </div>
+        </div>
+      }
+
+      @if (pagos.length > 0) {
+        <div class="card border-0 shadow-sm rounded-4 overflow-hidden bg-white mb-4">
+          <div class="card-header bg-municipal text-white p-3 px-4 d-flex justify-content-between align-items-center">
+            <h5 class="fw-bold mb-0"><i class="bi bi-receipt me-2"></i>Comprobantes Registrados ({{ pagos.length }})</h5>
+            <a routerLink="/busqueda" class="btn btn-sm btn-naranja">Nuevo Pago</a>
+          </div>
+          
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th class="ps-4">N° Comprobante</th>
+                  <th>Fecha</th>
+                  <th>Patente</th>
+                  <th>Monto</th>
+                  <th>Estado</th>
+                  <th class="text-end pe-4">Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (pago of pagos; track pago.id) {
+                  <tr>
+                    <td class="ps-4 fw-bold text-municipal">{{ pago.id }}</td>
+                    <td class="small">{{ pago.fecha }}</td>
+                    <td>
+                      <span class="badge bg-light text-dark border px-2 py-1 fw-bold letter-spacing-1">
+                        {{ pago.patente }}
+                      </span>
+                    </td>
+                    <td class="fw-bold text-success">${{ pago.monto | number }}</td>
+                    <td>
+                      <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-1 rounded-pill">
+                        {{ pago.estado | uppercase }}
+                      </span>
+                    </td>
+                    <td class="text-end pe-4">
+                      <a [routerLink]="['/comprobante', pago.id]" class="btn btn-sm btn-outline-primary rounded-pill px-3">
+                        <i class="bi bi-file-earmark-text me-1"></i> Ver Comprobante
+                      </a>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      }
+
+    </div>
+  </div>
+</main>
+
+<app-footer></app-footer>

@@ -1,0 +1,142 @@
+<!-- Barra Superior Naranja (Transparencia & Ley de Lobby) -->
+<div class="top-bar-orange d-none d-lg-block">
+  <div class="container d-flex flex-wrap justify-content-between align-items-center">
+    
+    <div class="d-flex flex-wrap align-items-center gap-3 my-1">
+      <a href="https://www.leylobby.gob.cl/instituciones/MU271" target="_blank" rel="noopener" class="top-bar-item">
+        <i class="bi bi-people-fill"></i>
+        <div class="top-bar-text">
+          <span class="title">Solicitar información</span>
+          <span class="subtitle">LEY DE LOBBY</span>
+        </div>
+      </a>
+
+      <div class="top-bar-divider d-none d-sm-block"></div>
+
+      <a href="https://www.portaltransparencia.cl/PortalPdT/web/guest/directorio-de-organismos-regulados?p_p_id=pdtorganismos_WAR_pdtorganismosportlet&orgcode=225a98e74b9c7212ebd67f06a9871c90" target="_blank" rel="noopener" class="top-bar-item">
+        <i class="bi bi-info-circle-fill"></i>
+        <div class="top-bar-text">
+          <span class="title">Solicitar información</span>
+          <span class="subtitle">LEY DE TRANSPARENCIA</span>
+        </div>
+      </a>
+
+      <div class="top-bar-divider d-none d-sm-block"></div>
+
+      <a href="https://www.portaltransparencia.cl/PortalPdT/pdtta?codOrganismo=MU271" target="_blank" rel="noopener" class="top-bar-item">
+        <i class="bi bi-file-earmark-text-fill"></i>
+        <div class="top-bar-text">
+          <span class="title">Transparencia activa</span>
+          <span class="subtitle">LEY DE TRANSPARENCIA</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="d-flex align-items-center gap-3 my-1">
+      <a href="https://web.facebook.com/rioclaro.cl?_rdc=1&_rdr#" target="_blank" rel="noopener" aria-label="Facebook" class="social-top"><i class="bi bi-facebook"></i></a>
+      <a href="https://www.instagram.com/municipalidadrioclaro/" target="_blank" rel="noopener" aria-label="Instagram" class="social-top"><i class="bi bi-instagram"></i></a>
+    </div>
+
+  </div>
+</div>
+
+<!-- Barra de Navegación Principal -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-municipal sticky-top shadow-sm">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center py-1" routerLink="/">
+      <img src="assets/Logo.png" alt="Logo Municipalidad Río Claro" class="navbar-logo" height="48">
+    </a>
+
+    <button class="navbar-toggler border-0" type="button" (click)="toggleMenu()" aria-label="Abrir menú de navegación">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" [class.show]="menuAbierto()" id="navMenu">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+        
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Inicio</a>
+        </li>
+
+        <!-- Dropdown Municipio -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="dropMunicipio" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Municipio
+          </a>
+          <ul class="dropdown-menu dropdown-menu-custom shadow" aria-labelledby="dropMunicipio">
+            <li><a class="dropdown-item" routerLink="/alcaldia" routerLinkActive="active">Alcaldía</a></li>
+            <li><a class="dropdown-item" routerLink="/consejo" routerLinkActive="active">Consejo Municipal</a></li>
+            <li><a class="dropdown-item" href="#" (click)="abrirInfo('Reseña de la Comuna', 'Río Claro es una hermosa comuna de la Región del Maule, cuya capital comunal es Cumpeo, famosa por sus tradiciones huasas, gastronomía típica y su arraigo con la historieta Condorito.', $event)">Reseña de comuna</a></li>
+          </ul>
+        </li>
+
+        <!-- Dropdown Direcciones -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="dropDirecciones" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Direcciones
+          </a>
+          <ul class="dropdown-menu dropdown-menu-custom shadow" aria-labelledby="dropDirecciones">
+            <li><a class="dropdown-item" href="#" (click)="abrirInfo('DIDECO - Dirección de Desarrollo Comunitario', 'Encargada de programas sociales, OMIL, fomento productivo, SENDA, Registro Social de Hogares y apoyo a organizaciones comunitarias.', $event)">DIDECO (Desarrollo Comunitario)</a></li>
+            <li><a class="dropdown-item" href="#" (click)="abrirInfo('Dirección de Administración y Finanzas', 'Gestión presupuestaria, contabilidad, adquisiciones públicas y rentas municipales.', $event)">Administración y Finanzas</a></li>
+            <li><a class="dropdown-item" href="#" (click)="abrirInfo('Dirección de Obras Municipales (DOM)', 'Inspección técnica de obras, regularización de títulos, permisos de edificación y mantenimiento comunal.', $event)">Obras Municipales (DOM)</a></li>
+            <li><a class="dropdown-item" href="#" (click)="abrirInfo('SECPLAN', 'Secretaría Comunal de Planificación: Formulación de proyectos de inversión, seguridad ciudadana e informática.', $event)">SECPLAN</a></li>
+            <li><a class="dropdown-item" href="#" (click)="abrirInfo('Dirección Comunal de Salud', 'Atención Primaria, funcionamiento del CESFAM y postas de salud rural de Río Claro.', $event)">Salud Comunal (CESFAM)</a></li>
+            <li><a class="dropdown-item" routerLink="/pagos">Tránsito y Permisos de Circulación</a></li>
+            <li><a class="dropdown-item" href="#" (click)="abrirInfo('Juzgado de Policía Local', 'Atención de infracciones comunales, tránsito y audiencias del Juzgado de Policía Local.', $event)">Juzgado de Policía Local</a></li>
+          </ul>
+        </li>
+
+        <!-- Dropdown Actas de Concejo -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="dropActas" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Actas de Concejo
+          </a>
+          <ul class="dropdown-menu dropdown-menu-custom shadow" aria-labelledby="dropActas">
+            <li><a class="dropdown-item" href="#" (click)="abrirInfo('Actas Ordinarias 2026', 'Consulte las actas y acuerdos de las sesiones ordinarias del Honorable Concejo Municipal de Río Claro del período 2026.', $event)">Actas Ordinarias 2026</a></li>
+            <li><a class="dropdown-item" href="#" (click)="abrirInfo('Actas Ordinarias 2025', 'Archivo oficial de actas de sesiones ordinarias del concejo municipal año 2025.', $event)">Actas Ordinarias 2025</a></li>
+            <li><a class="dropdown-item" href="#" (click)="abrirInfo('Sesiones Extraordinarias', 'Registro de materias extraordinarias convocadas por el Alcalde y el Concejo Municipal.', $event)">Sesiones Extraordinarias</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/concursos" routerLinkActive="active">Concursos Públicos</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/denuncias" routerLinkActive="active">Denuncias</a>
+        </li>
+
+        <!-- Portal de Pagos y Permiso de Circulación -->
+        <li class="nav-item">
+          <a class="nav-link btn-destacado-nav ms-lg-2" routerLink="/pagos" routerLinkActive="active">
+            <i class="bi bi-credit-card-2-front-fill me-1"></i> Pagos en Línea
+          </a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Modal Informativo Angular Nativo -->
+@if (modalAbierto()) {
+  <div class="modal-backdrop-custom" (click)="cerrarModal()">
+    <div class="modal-dialog-custom" (click)="$event.stopPropagation()">
+      <div class="modal-header-custom">
+        <h5 class="m-0 fw-bold">{{ modalTitle() }}</h5>
+        <button type="button" class="btn-close-custom" (click)="cerrarModal()" aria-label="Cerrar modal">&times;</button>
+      </div>
+      <div class="modal-body-custom">
+        <p class="mb-3">{{ modalText() }}</p>
+        <div class="p-3 bg-light rounded-3 border">
+          <small class="text-muted d-block">
+            <i class="bi bi-info-circle me-1 text-primary"></i> Para mayor información oficial, consultas presenciales o trámites documentales, puedes acudir al Edificio Municipal de Río Claro en Cumpeo o comunicarte al fono 442160224.
+          </small>
+        </div>
+      </div>
+      <div class="modal-footer-custom">
+        <button type="button" class="btn btn-naranja btn-sm px-4" (click)="cerrarModal()">Entendido</button>
+      </div>
+    </div>
+  </div>
+}

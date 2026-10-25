@@ -1,0 +1,221 @@
+/* Variables globales y diseño institucional Municipalidad de Río Claro */
+:root {
+  --color-principal: #004D79;
+  --color-principal-dark: #003756;
+  --color-naranja: #EA9838;
+  --color-naranja-hover: #D35400;
+  --color-fondo: #F4F6F8;
+  --color-texto: #2C3E50;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.text-municipal {
+  color: var(--color-principal) !important;
+}
+
+.text-naranja {
+  color: var(--color-naranja) !important;
+}
+
+.bg-municipal {
+  background-color: var(--color-principal) !important;
+}
+
+.btn-naranja {
+  background-color: var(--color-naranja);
+  color: #ffffff;
+  border: none;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.btn-naranja:hover,
+.btn-naranja:focus {
+  background-color: var(--color-naranja-hover);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(234, 152, 56, 0.35);
+}
+
+.btn-municipal {
+  background-color: var(--color-principal);
+  color: #ffffff;
+  border: none;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.btn-municipal:hover,
+.btn-municipal:focus {
+  background-color: var(--color-principal-dark);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 77, 121, 0.35);
+}
+
+/* Breadcrumb institucional */
+.link-home {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.85rem 1.5rem;
+  width: 100%;
+}
+
+.link-home img {
+  width: auto;
+  max-width: 250px;
+  max-height: 75px;
+  object-fit: contain;
+}
+
+.link-home ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  list-style: none;
+  margin: 0.5rem 0 0 0;
+  padding: 0;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.link-home li {
+  color: #6c757d;
+}
+
+.link-home a {
+  color: var(--color-principal);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.link-home a:hover {
+  color: var(--color-naranja);
+  text-decoration: underline;
+}
+
+.link-home .lkm {
+  color: var(--color-naranja);
+}
+
+/* Botón Volver Arriba */
+.btn-volver-arriba {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 48px;
+  height: 48px;
+  background-color: var(--color-naranja);
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-volver-arriba:hover {
+  background-color: var(--color-principal);
+  color: #ffffff;
+  transform: translateY(-4px);
+}
+
+/* Modales emergentes institucionales */
+.modal-backdrop-custom {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: fadeInModal 0.2s ease;
+}
+
+.modal-dialog-custom {
+  background: #ffffff;
+  border-radius: 14px;
+  max-width: 540px;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  animation: popUpModal 0.25s ease;
+}
+
+.modal-header-custom {
+  background: var(--color-principal);
+  color: #ffffff;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn-close-custom {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+.btn-close-custom:hover {
+  opacity: 1;
+}
+
+.modal-body-custom {
+  padding: 1.5rem;
+  color: #333333;
+  line-height: 1.55;
+}
+
+.modal-footer-custom {
+  padding: 0.85rem 1.25rem;
+  background: #f8f9fa;
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid #e9ecef;
+}
+
+@keyframes fadeInModal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes popUpModal {
+  from { transform: scale(0.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+

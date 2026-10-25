@@ -1,0 +1,207 @@
+<app-header></app-header>
+
+<div class="link-home">
+  <figure class="m-0 mb-2">
+    <img src="assets/logoRioClaro.png" alt="Logo Río Claro" />
+  </figure>
+  <ol>
+    <li><a routerLink="/">Inicio</a></li>
+    <li class="lkm">&gt;&gt;</li>
+    <li>Denuncias</li>
+  </ol>
+</div>
+
+<main class="container my-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
+      
+      <!-- Mensaje de Éxito Tras Envío -->
+      @if (formularioEnviado()) {
+        <div class="alert alert-success shadow-sm rounded-4 p-4 p-md-5 text-center mb-5 border-0">
+          <i class="bi bi-check-circle-fill display-4 text-success mb-3 d-block"></i>
+          <h2 class="fw-bold text-success mb-2">¡Denuncia Registrada con Éxito!</h2>
+          <p class="text-muted mb-3">
+            Su requerimiento ha sido ingresado al sistema municipal. El departamento correspondiente revisará los antecedentes para proceder a la fiscalización.
+          </p>
+          <div class="bg-white p-3 rounded-3 d-inline-block border mb-4">
+            <span class="text-muted small d-block">Número de Folio:</span>
+            <strong class="fs-4 text-municipal">{{ folioGenerado() }}</strong>
+          </div>
+          <div>
+            <button class="btn btn-naranja px-4 py-2" (click)="nuevaDenuncia()">Ingresar otra denuncia</button>
+            <a routerLink="/" class="btn btn-outline-secondary px-4 py-2 ms-2">Volver al Inicio</a>
+          </div>
+        </div>
+      }
+
+      <div class="card shadow-sm border-0 rounded-4 overflow-hidden mb-5" [class.d-none]="formularioEnviado()">
+        <div class="card-header bg-municipal text-white p-4">
+          <div class="d-flex align-items-center gap-3">
+            <i class="bi bi-shield-exclamation fs-1 text-warning"></i>
+            <div>
+              <h2 class="fw-bold mb-1 fs-3">PORTAL DE DENUNCIAS</h2>
+              <p class="mb-0 text-white-50">Canal formal para denuncias por Tenencia Irresponsable de Mascotas y Medioambientales.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body p-4 p-md-5 bg-white">
+          <p class="text-danger small fw-semibold mb-4">* Indica que el campo es obligatorio</p>
+
+          <form #denunciaForm="ngForm" (ngSubmit)="enviarDenuncia(denunciaForm)" novalidate>
+            
+            <!-- Correo electrónico -->
+            <div class="mb-4">
+              <label for="emailInput" class="form-label fw-bold">Correo Electrónico <span class="text-danger">*</span></label>
+              <input 
+                type="email" 
+                class="form-control form-control-lg" 
+                id="emailInput" 
+                name="email" 
+                [(ngModel)]="email" 
+                #emailRef="ngModel"
+                required 
+                email
+                placeholder="ejemplo@correo.com">
+              @if (emailRef.invalid && (emailRef.dirty || emailRef.touched || denunciaForm.submitted)) {
+                <div class="text-danger small mt-1">Por favor ingrese un correo electrónico válido.</div>
+              }
+            </div>
+
+            <!-- Tipo de Denuncia -->
+            <div class="mb-4">
+              <label class="form-label fw-bold d-block">Tipo de Denuncia <span class="text-danger">*</span></label>
+              
+              <div class="form-check custom-radio mb-2 p-3 border rounded-3" [class.border-primary]="tipoDenuncia === 'Tenencia Irresponsable de mascotas'">
+                <input 
+                  class="form-check-input" 
+                  type="radio" 
+                  name="tipoDenuncia" 
+                  id="tipoMascotas" 
+                  value="Tenencia Irresponsable de mascotas"
+                  [(ngModel)]="tipoDenuncia">
+                <label class="form-check-label fw-semibold ms-2 cursor-pointer" for="tipoMascotas">
+                  <i class="bi bi-heart-pulse-fill text-danger me-1"></i> Tenencia Irresponsable de Mascotas
+                </label>
+              </div>
+
+              <div class="form-check custom-radio p-3 border rounded-3" [class.border-primary]="tipoDenuncia === 'Medioambiental'">
+                <input 
+                  class="form-check-input" 
+                  type="radio" 
+                  name="tipoDenuncia" 
+                  id="tipoMedioambiental" 
+                  value="Medioambiental"
+                  [(ngModel)]="tipoDenuncia">
+                <label class="form-check-label fw-semibold ms-2 cursor-pointer" for="tipoMedioambiental">
+                  <i class="bi bi-tree-fill text-success me-1"></i> Denuncia Medioambiental (Microbasurales, ruidos, aguas)
+                </label>
+              </div>
+              
+              @if (errorTipo() && denunciaForm.submitted) {
+                <div class="text-danger small mt-1">Por favor seleccione un tipo de denuncia.</div>
+              }
+            </div>
+
+            <!-- Nombre -->
+            <div class="mb-4">
+              <label for="nombreInput" class="form-label fw-bold">Nombre Completo <span class="text-danger">*</span></label>
+              <input 
+                type="text" 
+                class="form-control form-control-lg" 
+                id="nombreInput" 
+                name="nombre" 
+                [(ngModel)]="nombre" 
+                #nombreRef="ngModel"
+                required 
+                placeholder="Nombre y Apellidos">
+              @if (nombreRef.invalid && (nombreRef.dirty || nombreRef.touched || denunciaForm.submitted)) {
+                <div class="text-danger small mt-1">El nombre es obligatorio.</div>
+              }
+            </div>
+
+            <!-- RUT -->
+            <div class="mb-4">
+              <label for="rutInput" class="form-label fw-bold">RUT (Opcional)</label>
+              <input 
+                type="text" 
+                class="form-control form-control-lg" 
+                id="rutInput" 
+                name="rut" 
+                [(ngModel)]="rut" 
+                placeholder="12.345.678-9">
+            </div>
+
+            <!-- Teléfono -->
+            <div class="mb-4">
+              <label for="telefonoInput" class="form-label fw-bold">Teléfono de Contacto <span class="text-danger">*</span></label>
+              <input 
+                type="tel" 
+                class="form-control form-control-lg" 
+                id="telefonoInput" 
+                name="telefono" 
+                [(ngModel)]="telefono" 
+                #telRef="ngModel"
+                required 
+                placeholder="+56 9 1234 5678">
+              @if (telRef.invalid && (telRef.dirty || telRef.touched || denunciaForm.submitted)) {
+                <div class="text-danger small mt-1">El teléfono de contacto es obligatorio.</div>
+              }
+            </div>
+
+            <!-- Antecedentes -->
+            <div class="mb-4">
+              <label for="antecedentesInput" class="form-label fw-bold">Antecedentes y Descripción de los Hechos <span class="text-danger">*</span></label>
+              <textarea 
+                class="form-control form-control-lg" 
+                id="antecedentesInput" 
+                name="antecedentes" 
+                rows="5" 
+                [(ngModel)]="antecedentes" 
+                #antRef="ngModel"
+                required 
+                placeholder="Describa detalladamente lugar, fecha, hechos y cualquier dato que facilite la inspección municipal..."></textarea>
+              @if (antRef.invalid && (antRef.dirty || antRef.touched || denunciaForm.submitted)) {
+                <div class="text-danger small mt-1">Por favor describa los antecedentes a denunciar.</div>
+              }
+            </div>
+
+            <!-- Archivos / Medios de Comprobación -->
+            <div class="mb-5">
+              <label for="archivosInput" class="form-label fw-bold">Medios de Comprobación (Fotos, Videos, Documentos)</label>
+              <p class="text-muted small mb-2">Puede adjuntar hasta 10 archivos (imágenes, audios o PDF probatorios).</p>
+              <input 
+                type="file" 
+                class="form-control form-control-lg" 
+                id="archivosInput" 
+                multiple 
+                (change)="onFilesSelected($event)"
+                accept="image/*,video/*,.pdf,.doc,.docx">
+              
+              @if (archivosSeleccionados.length > 0) {
+                <div class="mt-3 p-3 bg-light rounded-3 border">
+                  <strong>Archivos seleccionados ({{ archivosSeleccionados.length }}):</strong>
+                  <ul class="mb-0 ps-3 mt-1 small">
+                    @for (item of archivosSeleccionados; track item.name) {
+                      <li>{{ item.name }} ({{ item.size }})</li>
+                    }
+                  </ul>
+                </div>
+              }
+            </div>
+
+            <div class="d-grid">
+              <button type="submit" class="btn btn-naranja py-3 fs-5 fw-bold shadow-sm">
+                <i class="bi bi-send-fill me-2"></i> Enviar Denuncia Formal
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<app-footer></app-footer>

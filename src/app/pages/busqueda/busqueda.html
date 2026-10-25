@@ -1,0 +1,67 @@
+<app-header></app-header>
+
+<div class="link-home">
+  <figure class="m-0 mb-2">
+    <img src="assets/logoRioClaro.png" alt="Logo Río Claro" />
+  </figure>
+  <ol>
+    <li><a routerLink="/">Inicio</a></li>
+    <li class="lkm">&gt;&gt;</li>
+    <li><a routerLink="/pagos">Pagos en Línea</a></li>
+    <li class="lkm">&gt;&gt;</li>
+    <li>Permiso de Circulación</li>
+  </ol>
+</div>
+
+<main class="container my-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+      
+      <div class="card card-busqueda border-0 shadow-sm rounded-4 p-4 p-md-5 bg-white text-center">
+        <div class="busqueda-icon-circle mx-auto mb-3">
+          <i class="bi bi-search text-naranja fs-2"></i>
+        </div>
+        <h2 class="fw-bold text-municipal mb-2">Buscar Permiso de Circulación</h2>
+        <p class="text-muted small mb-4">Ingresa la placa patente del vehículo para consultar vigencia, montos y pagar en línea.</p>
+
+        <form class="formulario-busqueda text-start" (ngSubmit)="buscar()">
+          <div class="mb-3">
+            <label for="patente" class="form-label fw-bold small text-muted text-uppercase">Placa Patente Única</label>
+            <div class="input-group input-group-lg">
+              <span class="input-group-text bg-light border-end-0 text-muted">
+                <i class="bi bi-car-front"></i>
+              </span>
+              <input
+                type="text"
+                class="form-control border-start-0 text-center fw-bold fs-4 text-uppercase tracking-wider"
+                id="patente"
+                name="patente"
+                [(ngModel)]="patente"
+                placeholder="Ej: ABDC12"
+                maxlength="6"
+                required
+              >
+            </div>
+            <div class="form-text small text-muted">
+              Patentes de prueba: <strong>CDRF45</strong> (impago/pendiente), <strong>ABDC12</strong> (pagado), <strong>ABC45</strong> (vencido), <strong>INC001</strong> (datos incompletos), <strong>ZZ9999</strong> (no encontrada).
+            </div>
+
+          </div>
+
+          <button type="submit" class="btn btn-naranja w-100 py-3 fw-bold fs-5 rounded-3 shadow-sm">
+            <i class="bi bi-arrow-right-circle me-1"></i> Consultar Estado
+          </button>
+        </form>
+
+        @if (mensajeError) {
+          <div class="alert alert-danger mt-4 border-0 rounded-3 text-start small mb-0">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i> {{ mensajeError }}
+          </div>
+        }
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<app-footer></app-footer>

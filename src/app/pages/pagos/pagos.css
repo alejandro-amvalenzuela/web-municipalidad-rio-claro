@@ -1,0 +1,40 @@
+.card-destacado-tramite {
+  background: linear-gradient(135deg, var(--color-principal) 0%, #002e47 100%);
+  border: none !important;
+}
+
+.icon-pago-destacado {
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
+  background-color: var(--color-naranja);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+
+.card-tramite-item {
+  background-color: #ffffff;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+  cursor: pointer;
+}
+
+.card-tramite-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 77, 121, 0.12) !important;
+  border-color: var(--color-naranja) !important;
+}
+
+.tramite-mini-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background-color: rgba(234, 152, 56, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}

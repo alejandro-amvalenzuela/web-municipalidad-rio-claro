@@ -1,0 +1,14 @@
+.custom-radio {
+  background-color: #fafbfc;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.custom-radio:hover {
+  background-color: #f1f4f8;
+  border-color: var(--color-naranja) !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

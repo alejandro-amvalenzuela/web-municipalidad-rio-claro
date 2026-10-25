@@ -1,0 +1,51 @@
+.card-concejal {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  background-color: #ffffff;
+}
+
+.card-concejal:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 77, 121, 0.15) !important;
+}
+
+.concejal-photo-wrap {
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+  background-color: #f1f4f8;
+}
+
+.concejal-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.card-concejal:hover .concejal-img {
+  transform: scale(1.05);
+}
+
+.badge-partido {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: var(--color-naranja);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.badge-cargo {
+  display: inline-block;
+  background-color: rgba(0, 77, 121, 0.1);
+  color: var(--color-principal);
+  font-weight: 700;
+  font-size: 0.72rem;
+  padding: 0.3em 0.8em;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+}

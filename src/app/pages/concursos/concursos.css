@@ -1,0 +1,25 @@
+.card-concurso {
+  background-color: #ffffff;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border-left: 5px solid var(--color-naranja) !important;
+}
+
+.card-concurso:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 77, 121, 0.12) !important;
+}
+
+.concurso-icon-box {
+  width: 54px;
+  height: 54px;
+  border-radius: 12px;
+  background-color: rgba(234, 152, 56, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.modal-lg-custom {
+  max-width: 650px !important;
+}

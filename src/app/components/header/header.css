@@ -1,0 +1,206 @@
+.top-bar-orange {
+  background-color: var(--color-naranja);
+  color: #ffffff;
+  padding: 0.45rem 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  font-size: 0.82rem;
+}
+
+.top-bar-orange a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  padding: 3px 6px;
+  border-radius: 6px;
+}
+
+.top-bar-orange a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.top-bar-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.top-bar-item i {
+  font-size: 1.3rem;
+  color: #ffffff;
+}
+
+.top-bar-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.top-bar-text .title {
+  font-size: 0.72rem;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+.top-bar-text .subtitle {
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.top-bar-divider {
+  border-left: 1px solid rgba(255, 255, 255, 0.35);
+  height: 22px;
+  margin: 0 4px;
+}
+
+.social-top {
+  color: #ffffff;
+  font-size: 1.1rem;
+  transition: transform 0.2s;
+  display: inline-block;
+}
+
+.social-top:hover {
+  transform: scale(1.15);
+}
+
+/* Navbar */
+.bg-municipal {
+  background-color: var(--color-principal) !important;
+  border-bottom: 3px solid var(--color-naranja);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
+}
+
+.navbar-logo {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover .navbar-logo {
+  transform: scale(1.03);
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  font-size: 0.92rem;
+  color: #ffffff !important;
+  font-weight: 600;
+  padding: 0.65rem 0.95rem;
+  transition: all 0.2s ease;
+  border-radius: 6px;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link.active {
+  color: #FFD180 !important;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.btn-destacado-nav {
+  background-color: var(--color-naranja) !important;
+  color: #ffffff !important;
+  border-radius: 20px !important;
+  padding: 0.5rem 1.1rem !important;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-destacado-nav:hover {
+  background-color: var(--color-naranja-hover) !important;
+  color: #ffffff !important;
+  transform: translateY(-1px);
+}
+
+/* Dropdown */
+.dropdown-menu-custom {
+  background: #003B5C;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 0.5rem 0;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25) !important;
+}
+
+.dropdown-menu-custom .dropdown-item {
+  color: #ffffff;
+  font-size: 0.88rem;
+  font-weight: 500;
+  padding: 0.5rem 1.25rem;
+  transition: all 0.2s ease;
+}
+
+.dropdown-menu-custom .dropdown-item:hover {
+  background: rgba(234, 152, 56, 0.25);
+  color: #FFD180 !important;
+  padding-left: 1.5rem;
+}
+
+/* Modal personalizado */
+.modal-backdrop-custom {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal-dialog-custom {
+  background: #ffffff;
+  border-radius: 12px;
+  max-width: 540px;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  animation: popUp 0.25s ease;
+}
+
+.modal-header-custom {
+  background: var(--color-principal);
+  color: #ffffff;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn-close-custom {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.85;
+}
+
+.btn-close-custom:hover {
+  opacity: 1;
+}
+
+.modal-body-custom {
+  padding: 1.5rem;
+  color: #333333;
+  line-height: 1.55;
+}
+
+.modal-footer-custom {
+  padding: 0.85rem 1.25rem;
+  background: #f8f9fa;
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid #e9ecef;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes popUp {
+  from { transform: scale(0.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}

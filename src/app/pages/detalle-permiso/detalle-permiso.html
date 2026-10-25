@@ -1,0 +1,142 @@
+<app-header></app-header>
+
+<div class="link-home">
+  <figure class="m-0 mb-2">
+    <img src="assets/logoRioClaro.png" alt="Logo Río Claro" />
+  </figure>
+  <ol>
+    <li><a routerLink="/">Inicio</a></li>
+    <li class="lkm">&gt;&gt;</li>
+    <li><a routerLink="/pagos">Pagos en Línea</a></li>
+    <li class="lkm">&gt;&gt;</li>
+    <li><a routerLink="/busqueda">Búsqueda</a></li>
+    <li class="lkm">&gt;&gt;</li>
+    <li>Detalle de Permiso</li>
+  </ol>
+</div>
+
+<main class="container my-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
+      
+      @if (mensaje) {
+        <div class="alert alert-danger shadow-sm rounded-4 p-4 text-center">
+          <i class="bi bi-exclamation-circle fs-2 d-block mb-2"></i>
+          {{ mensaje }}
+          <div class="mt-3">
+            <a routerLink="/busqueda" class="btn btn-sm btn-outline-danger">Volver a intentar</a>
+          </div>
+        </div>
+      }
+
+      @if (permiso && vehiculo) {
+        <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4 bg-white">
+          <div class="card-header bg-municipal text-white p-4 d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <div>
+              <span class="badge bg-warning text-dark fw-bold mb-1">Río Claro - Tránsito</span>
+              <h2 class="fw-bold mb-0 fs-3">Detalle del Permiso Vehicular</h2>
+            </div>
+            <div class="patente-pill">
+              {{ vehiculo.patente }}
+            </div>
+          </div>
+
+          <div class="card-body p-4 p-md-5">
+            <!-- Datos del Vehículo -->
+            <h5 class="fw-bold text-municipal mb-3 pb-2 border-bottom">
+              <i class="bi bi-car-front-fill text-naranja me-2"></i>Datos del Vehículo
+            </h5>
+            
+            <div class="row g-3 mb-4">
+              <div class="col-6 col-md-4">
+                <small class="text-muted d-block">Marca</small>
+                <strong class="fs-6">{{ vehiculo.marca }}</strong>
+              </div>
+              <div class="col-6 col-md-4">
+                <small class="text-muted d-block">Modelo</small>
+                <strong class="fs-6">{{ vehiculo.modelo }}</strong>
+              </div>
+              <div class="col-6 col-md-4">
+                <small class="text-muted d-block">Año</small>
+                <strong class="fs-6">{{ vehiculo.anio }}</strong>
+              </div>
+              <div class="col-6 col-md-4">
+                <small class="text-muted d-block">Color</small>
+                <strong class="fs-6">{{ vehiculo.color }}</strong>
+              </div>
+              <div class="col-12 col-md-8">
+                <small class="text-muted d-block">Propietario Registrado</small>
+                <strong class="fs-6">{{ vehiculo.propietario }}</strong>
+              </div>
+            </div>
+
+            <!-- Datos del Permiso -->
+            <h5 class="fw-bold text-municipal mb-3 pb-2 border-bottom">
+              <i class="bi bi-file-earmark-check-fill text-naranja me-2"></i>Información del Permiso de Circulación
+            </h5>
+
+            <div class="row g-3 mb-4">
+              <div class="col-12 col-md-6">
+                <small class="text-muted d-block">Municipalidad Emisora</small>
+                <strong>{{ permiso.municipalidad }}</strong>
+              </div>
+              <div class="col-6 col-md-3">
+                <small class="text-muted d-block">Período / Año</small>
+                <strong>{{ permiso.anio }}</strong>
+              </div>
+              <div class="col-6 col-md-3">
+                <small class="text-muted d-block">Vigencia Hasta</small>
+                <strong>{{ permiso.vigencia }}</strong>
+              </div>
+              <div class="col-12 col-md-6">
+                <small class="text-muted d-block">Total a Pagar</small>
+                <strong class="fs-3 text-municipal">${{ permiso.monto | number }} CLP</strong>
+              </div>
+              <div class="col-12 col-md-6 d-flex align-items-center">
+                <div>
+                  <small class="text-muted d-block mb-1">Estado de la Obligación</small>
+                  @if (permiso.estado === 'pendiente') {
+                    <span class="badge bg-warning text-dark px-3 py-2 fs-6">PENDIENTE DE PAGO</span>
+                  } @else if (permiso.estado === 'pagado') {
+                    <span class="badge bg-success px-3 py-2 fs-6">PAGADO / AL DÍA</span>
+                  } @else {
+                    <span class="badge bg-danger px-3 py-2 fs-6">VENCIDO</span>
+                  }
+                </div>
+              </div>
+            </div>
+
+            <!-- Botones de Acción -->
+            <div class="pt-3 border-top d-flex justify-content-between align-items-center flex-wrap gap-3">
+              <a routerLink="/busqueda" class="btn btn-outline-secondary px-4 py-2">
+                <i class="bi bi-arrow-left me-1"></i> Nueva búsqueda
+              </a>
+
+              @if (permiso.estado === 'pendiente') {
+                <button class="btn btn-naranja px-5 py-2 fs-5 fw-bold shadow-sm" (click)="irAPagar()">
+                  <i class="bi bi-credit-card-2-front-fill me-2"></i> Pagar Permiso (${{ permiso.monto | number }})
+                </button>
+              }
+
+              @if (permiso.estado === 'pagado') {
+                <span class="text-success fw-bold">
+                  <i class="bi bi-check-circle-fill me-1"></i> Este permiso ya se encuentra pagado y vigente.
+                </span>
+              }
+
+              @if (permiso.estado === 'vencido') {
+                <div class="text-danger small">
+                  <i class="bi bi-exclamation-triangle-fill me-1"></i> Este permiso se encuentra vencido. Por favor acérquese a la Dirección de Tránsito para regularizar intereses y multas.
+                </div>
+              }
+            </div>
+
+          </div>
+        </div>
+      }
+
+    </div>
+  </div>
+</main>
+
+<app-footer></app-footer>

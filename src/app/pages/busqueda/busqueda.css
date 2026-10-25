@@ -1,0 +1,40 @@
+.card-busqueda {
+  border-top: 4px solid var(--color-naranja) !important;
+}
+
+.busqueda-icon-circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: rgba(234, 152, 56, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tracking-wider {
+  letter-spacing: 2px;
+}
+
+/* Estilo suave y natural para el placeholder */
+.formulario-busqueda input::placeholder {
+  color: #adb5bd !important;
+  font-weight: 400 !important;
+  opacity: 0.7 !important;
+  letter-spacing: normal !important;
+}
+
+.formulario-busqueda input::-webkit-input-placeholder {
+  color: #adb5bd !important;
+  font-weight: 400 !important;
+  opacity: 0.7 !important;
+  letter-spacing: normal !important;
+}
+
+.formulario-busqueda input::-moz-placeholder {
+  color: #adb5bd !important;
+  font-weight: 400 !important;
+  opacity: 0.7 !important;
+  letter-spacing: normal !important;
+}
+

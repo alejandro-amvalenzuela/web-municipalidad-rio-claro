@@ -1,0 +1,94 @@
+.alcalde-hero {
+  background: linear-gradient(135deg, var(--color-principal) 0%, #00283f 100%);
+  color: #ffffff;
+  border-left: 6px solid var(--color-naranja);
+}
+
+.bg-naranja-pill {
+  background-color: var(--color-naranja);
+  color: #ffffff;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  padding: 0.45em 0.85em;
+  border-radius: 20px;
+}
+
+.cargo-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.role-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #FFD180;
+}
+
+.role-place {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.foto-alcalde-frame img {
+  max-height: 320px;
+  object-fit: cover;
+  border: 4px solid rgba(255, 255, 255, 0.15);
+}
+
+.lead-text {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color-principal);
+  line-height: 1.5;
+}
+
+.letter-spacing {
+  letter-spacing: 0.8px;
+}
+
+/* Equipo cards */
+.card-equipo {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.card-equipo:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 77, 121, 0.12) !important;
+  border-color: var(--color-naranja);
+}
+
+.initials-badge {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: var(--color-principal);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 10px rgba(0, 77, 121, 0.25);
+}
+
+.badge-cargo {
+  display: inline-block;
+  background-color: rgba(234, 152, 56, 0.15);
+  color: #b25e00;
+  font-weight: 700;
+  font-size: 0.72rem;
+  padding: 0.3em 0.7em;
+  border-radius: 6px;
+  letter-spacing: 0.4px;
+  margin-bottom: 0.35rem;
+}
+
+.equipo-meta {
+  font-size: 0.86rem;
+  color: #555555;
+  font-weight: 500;
+}

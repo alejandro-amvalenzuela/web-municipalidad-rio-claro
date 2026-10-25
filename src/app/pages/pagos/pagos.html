@@ -1,0 +1,139 @@
+<app-header></app-header>
+
+<div class="link-home">
+  <figure class="m-0 mb-2">
+    <img src="assets/logoRioClaro.png" alt="Logo Río Claro" />
+  </figure>
+  <ol>
+    <li><a routerLink="/">Inicio</a></li>
+    <li class="lkm">&gt;&gt;</li>
+    <li>Pagos en Línea</li>
+  </ol>
+</div>
+
+<main class="container my-4">
+  <div class="text-center mb-5">
+    <img src="assets/muni.png" alt="Logo Municipalidad de Río Claro" style="max-height:85px; margin-bottom: 12px;">
+    <h1 class="fw-bold text-municipal mb-1">Portal de Pagos en Línea</h1>
+    <p class="text-muted">Servicios y trámites municipales digitales de la comuna de Río Claro</p>
+  </div>
+
+  <div class="row g-4 justify-content-center mb-5">
+
+    <!-- Card Principal: Permiso de Circulación (Conecta al módulo de búsqueda y pago) -->
+    <div class="col-12 col-md-10">
+      <div class="card card-destacado-tramite border-0 rounded-4 shadow-sm p-4 p-md-5">
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-3">
+          <div class="d-flex align-items-center gap-3">
+            <div class="icon-pago-destacado">
+              <i class="bi bi-car-front-fill fs-1 text-white"></i>
+            </div>
+            <div>
+              <h3 class="fw-bold text-white mb-0">Permiso de Circulación 2026</h3>
+            </div>
+          </div>
+        </div>
+        <p class="text-white-50 leading-relaxed mb-4">
+          Renueva tu permiso de circulación 2026 en línea. Consulta con tu placa patente, revisa el estado de vigencia, realiza el pago simulado con tarjeta y obtén tu comprobante digital oficial de inmediato.
+        </p>
+        <div class="d-flex gap-3 flex-wrap">
+          <a routerLink="/busqueda" class="btn btn-naranja px-4 py-2 fw-bold">
+            <i class="bi bi-search me-1"></i> Consultar Patente y Pagar
+          </a>
+          <a routerLink="/historial" class="btn btn-outline-light px-4 py-2 fw-bold">
+            <i class="bi bi-clock-history me-1"></i> Ver Historial de Pagos
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Otros Trámites de Pagos -->
+    <div class="col-12 col-md-10">
+      <div class="row g-3">
+
+        <div class="col-12 col-md-6">
+          <button type="button" class="card card-tramite-item w-100 text-start border-0 shadow-sm rounded-4 p-4 h-100" (click)="abrirInfo('Parte Juzgado de Policía Local', 'Para consultar o cancelar multas e infracciones impuestas por el Juzgado de Policía Local de Río Claro, tenga a mano el número de parte y citación del juzgado.')">
+            <div class="d-flex align-items-center gap-3">
+              <div class="tramite-mini-icon">
+                <i class="bi bi-building fs-3 text-naranja"></i>
+              </div>
+              <div>
+                <h5 class="fw-bold text-municipal mb-1">Parte Juzgado Policía Local</h5>
+                <p class="text-muted small mb-0">Paga acá tus infracciones y partes comunales</p>
+              </div>
+            </div>
+          </button>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <button type="button" class="card card-tramite-item w-100 text-start border-0 shadow-sm rounded-4 p-4 h-100" (click)="abrirInfo('Multas TAG e Infracciones de Peaje', 'Servicio de consulta de multas por transitar sin dispositivo de telepeaje habilitado en autopistas interurbanas.')">
+            <div class="d-flex align-items-center gap-3">
+              <div class="tramite-mini-icon">
+                <i class="bi bi-receipt fs-3 text-naranja"></i>
+              </div>
+              <div>
+                <h5 class="fw-bold text-municipal mb-1">Multas TAG</h5>
+                <p class="text-muted small mb-0">Consulta y pago de multas TAG del registro</p>
+              </div>
+            </div>
+          </button>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <a routerLink="/busqueda" class="card card-tramite-item w-100 text-decoration-none border-0 shadow-sm rounded-4 p-4 h-100">
+            <div class="d-flex align-items-center gap-3">
+              <div class="tramite-mini-icon">
+                <i class="bi bi-file-earmark-check fs-3 text-naranja"></i>
+              </div>
+              <div>
+                <h5 class="fw-bold text-municipal mb-1">Valida tu Permiso de Circulación</h5>
+                <p class="text-muted small mb-0">Verifica la vigencia y autenticidad del documento</p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <button type="button" class="card card-tramite-item w-100 text-start border-0 shadow-sm rounded-4 p-4 h-100" (click)="abrirInfo('Pago de Patente Comercial y Municipal', 'El pago de patentes comerciales, industriales, profesionales y de alcoholes se efectúa durante los meses de enero y julio en Rentas Municipales.')">
+            <div class="d-flex align-items-center gap-3">
+              <div class="tramite-mini-icon">
+                <i class="bi bi-file-earmark-text fs-3 text-naranja"></i>
+              </div>
+              <div>
+                <h5 class="fw-bold text-municipal mb-1">Pago de Patente Municipal</h5>
+                <p class="text-muted small mb-0">Comercios, servicios y patentes de alcoholes</p>
+              </div>
+            </div>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- Modal Informativo -->
+@if (modalAbierto()) {
+  <div class="modal-backdrop-custom" (click)="cerrarModal()">
+    <div class="modal-dialog-custom" (click)="$event.stopPropagation()">
+      <div class="modal-header-custom">
+        <h5 class="m-0 fw-bold">{{ modalTitulo() }}</h5>
+        <button type="button" class="btn-close-custom" (click)="cerrarModal()">&times;</button>
+      </div>
+      <div class="modal-body-custom">
+        <p class="mb-3">{{ modalTexto() }}</p>
+        <div class="p-3 bg-light rounded-3 border">
+          <small class="text-muted d-block">
+            <i class="bi bi-info-circle text-primary me-1"></i> Portal de Servicios Digitales - I. Municipalidad de Río Claro.
+          </small>
+        </div>
+      </div>
+      <div class="modal-footer-custom">
+        <button type="button" class="btn btn-naranja btn-sm px-4" (click)="cerrarModal()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+}
+
+<app-footer></app-footer>

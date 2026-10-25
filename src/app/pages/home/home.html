@@ -1,0 +1,233 @@
+<app-header></app-header>
+
+<main class="home-main">
+  <!-- Slider Principal Interactivo en Angular -->
+  <div class="slider-principal">
+    @for (slide of slides; track $index) {
+      <div class="slide-item" [class.activo]="$index === slideActual()">
+        <img [src]="slide.imagen" [alt]="slide.titulo" class="slide-img">
+        <div class="slider-overlay">
+          <div class="slider-texto-flotante">
+            <span class="badge bg-naranja-badge mb-2">Comuna de Río Claro</span>
+            <h1>{{ slide.titulo }}</h1>
+            <p>{{ slide.descripcion }}</p>
+            <div class="mt-3">
+              <a routerLink="/concursos" class="btn btn-naranja btn-sm px-4 py-2 me-2">Ver Convocatoria</a>
+              <a routerLink="/pagos" class="btn btn-outline-light btn-sm px-4 py-2">Trámites y Pagos</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+
+    <!-- Controles del Slider -->
+    <button class="slider-ctrl prev" (click)="anteriorSlide()" aria-label="Slide anterior">
+      <i class="bi bi-chevron-left"></i>
+    </button>
+    <button class="slider-ctrl next" (click)="siguienteSlide()" aria-label="Slide siguiente">
+      <i class="bi bi-chevron-right"></i>
+    </button>
+
+    <!-- Indicadores -->
+    <div class="slider-indicadores">
+      @for (slide of slides; track $index) {
+        <button 
+          class="ind-btn" 
+          [class.activo]="$index === slideActual()"
+          (click)="irASlide($index)"
+          [attr.aria-label]="'Ir al slide ' + ($index + 1)">
+        </button>
+      }
+    </div>
+  </div>
+
+  <div class="container my-5">
+
+    <!-- 3 Opciones Principales de Entrada Rápida -->
+    <div class="row g-4 mb-5">
+      <div class="col-12 col-md-4">
+        <a routerLink="/denuncias" class="card-opcion">
+          <div class="icon-wrap">
+            <i class="bi bi-exclamation-triangle-fill icon-opcion"></i>
+          </div>
+          <h4 class="fw-bold m-0 text-municipal">Denuncias</h4>
+          <p class="small text-muted mb-0 mt-2">Mascotas y denuncias medioambientales</p>
+        </a>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <a routerLink="/concursos" class="card-opcion">
+          <div class="icon-wrap">
+            <i class="bi bi-file-earmark-person-fill icon-opcion"></i>
+          </div>
+          <h4 class="fw-bold m-0 text-municipal">Concursos Públicos</h4>
+          <p class="small text-muted mb-0 mt-2">Bases y postulaciones activas</p>
+        </a>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <button type="button" class="card-opcion w-100 text-start border-0" (click)="abrirModal('Plan Regulador Comunal', 'El Plan Regulador de la Comuna de Río Claro orienta y regula el desarrollo urbano armónico de Cumpeo y sectores aledaños, definiendo zonificaciones, alturas de edificación y trazados viales. Para solicitar certificados de informaciones previas (CIP), diríjase a la Dirección de Obras Municipales.')">
+          <div class="icon-wrap">
+            <i class="bi bi-map-fill icon-opcion"></i>
+          </div>
+          <h4 class="fw-bold m-0 text-municipal">Plan Regulador</h4>
+          <p class="small text-muted mb-0 mt-2">Normativa territorial y planos de la comuna</p>
+        </button>
+      </div>
+    </div>
+
+    <!-- Banner de Bienvenida -->
+    <div class="banner-bienvenida mb-5 shadow-sm">
+      <div class="banner-overlay">
+        <img src="assets/Logo.png" alt="Logo Río Claro" class="mb-2" height="46">
+        <h2>Ilustre Municipalidad de Río Claro</h2>
+        <p>Trabajando día a día con el corazón por nuestra comunidad</p>
+        <div class="d-flex gap-2 mt-3 flex-wrap justify-content-center">
+          <a routerLink="/alcaldia" class="btn btn-sm btn-outline-light px-3 py-1">Saludo del Alcalde</a>
+          <a routerLink="/consejo" class="btn btn-sm btn-outline-light px-3 py-1">Concejo Municipal</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Destacado del Módulo de Permiso de Circulación y Trámites -->
+    <div class="card-destacado-pago p-4 p-md-5 mb-5 rounded-4 shadow-sm">
+      <div class="row align-items-center g-4">
+        <div class="col-12">
+          <span class="badge bg-warning text-dark px-3 py-2 fw-bold mb-2">Portal de Trámites Online</span>
+          <h3 class="fw-bold text-white mb-2">Permiso de Circulación 2026</h3>
+          <p class="text-white-50 mb-4">
+            Consulta y paga tu permiso de circulación en sencillos pasos con patente o mediante tu historial registrado. Sistema en línea integrado de la comuna.
+          </p>
+          <div class="d-flex gap-2 flex-wrap">
+            <a routerLink="/busqueda" class="btn btn-naranja px-4 py-2 fw-semibold">
+              <i class="bi bi-search me-1"></i> Buscar por Patente
+            </a>
+            <a routerLink="/historial" class="btn btn-outline-light px-4 py-2 fw-semibold">
+              <i class="bi bi-clock-history me-1"></i> Ver Historial de Pagos
+            </a>
+            <a routerLink="/pagos" class="btn btn-link text-white text-decoration-none">
+              Otros trámites y pagos ›
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 Cards de Servicios Municipales -->
+    <div class="row g-4 mb-5">
+      <div class="col-12 col-md-6">
+        <div class="card-servicio">
+          <div class="card-servicio-header d-flex justify-content-between align-items-center">
+            <h4 class="fw-bold mb-0"><i class="bi bi-wallet2 me-2"></i>Trámites y Pagos</h4>
+            <span class="badge bg-naranja-badge">En línea</span>
+          </div>
+          <div class="card-servicio-body">
+            <a routerLink="/busqueda" class="sub-item-servicio text-decoration-none text-dark d-block">
+              <h5>Pago Permiso de Circulación</h5>
+              <p>Renovación y regularización vehicular Río Claro</p>
+            </a>
+            <button type="button" class="sub-item-servicio text-decoration-none text-dark d-block w-100 text-start border-0 bg-transparent" (click)="abrirModal('Pago Patente Comercial', 'El pago de patente comercial, industrial o profesional se realiza semestralmente (enero y julio) según el rol asignado en la oficina de Rentas Municipales.')">
+              <h5>Pago Patente Comercial</h5>
+              <p>Comercios, servicios e industrias comunales</p>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="card-servicio">
+          <div class="card-servicio-header d-flex justify-content-between align-items-center">
+            <h4 class="fw-bold mb-0"><i class="bi bi-shield-exclamation me-2"></i>Pago de Multas y Partes</h4>
+            <span class="badge bg-secondary">Juzgado</span>
+          </div>
+          <div class="card-servicio-body">
+            <button type="button" class="sub-item-servicio text-decoration-none text-dark d-block w-100 text-start border-0 bg-transparent" (click)="abrirModal('Pago de Partes e Infracciones', 'Para pagar infracciones del Juzgado de Policía Local de Río Claro, ingrese el número de citación o boleta de infracción entregada por Carabineros o Inspectores.')">
+              <h5>Pago de multas y partes</h5>
+              <p>Partes emitidos por Juzgado de Policía Local</p>
+            </button>
+            <button type="button" class="sub-item-servicio text-decoration-none text-dark d-block w-100 text-start border-0 bg-transparent" (click)="abrirModal('Multas TAG', 'Consulta de deudas y multas de tránsito por circular sin dispositivo de peaje automático habilitado.')">
+              <h5>Pago multas TAG</h5>
+              <p>Verificación y pago de multas del registro RNVM</p>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección Noticias Municipales -->
+    <section class="mb-5">
+      <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+        <h3 class="fw-bold mb-0 text-municipal">
+          <i class="bi bi-newspaper me-2 text-naranja"></i>Noticias y Novedades Municipales
+        </h3>
+        <span class="text-muted small">Actualidad de Río Claro</span>
+      </div>
+      
+      <div class="row g-4">
+        
+        <div class="col-12 col-md-4">
+          <div class="card-noticia">
+            <img src="assets/hero1.png" alt="Noticia Proyectos">
+            <div class="card-noticia-body">
+              <span class="noticia-fecha"><i class="bi bi-calendar3 me-1"></i>14 SEP 2026</span>
+              <h5 class="noticia-titulo">Avances en Proyectos Comunitarios</h5>
+              <p class="noticia-desc">Nuevas obras de pavimentación e iluminación en los sectores rurales de la comuna para mejorar la calidad de vida.</p>
+              <button class="btn btn-sm btn-naranja" (click)="abrirModal('Avances en Proyectos Comunitarios', 'La Dirección de Obras Municipales informa la finalización de luminarias LED y pavimentación participativa en los sectores El Porvenir y Los Treiles de Cumpeo.')">Leer más</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <div class="card-noticia">
+            <img src="assets/hero2.png" alt="Noticia Jornada Cultural">
+            <div class="card-noticia-body">
+              <span class="noticia-fecha"><i class="bi bi-calendar3 me-1"></i>10 SEP 2026</span>
+              <h5 class="noticia-titulo">Jornada Cultural y Gastronómica</h5>
+              <p class="noticia-desc">Gran encuentro de emprendedores, cultores y artesanos locales en la Plaza de Armas de Cumpeo.</p>
+              <button class="btn btn-sm btn-naranja" (click)="abrirModal('Jornada Cultural y Gastronómica', 'Con éxito culminó la feria campesina y folclórica con más de 30 artesanos locales y música tradicional chilena organizada por DIDECO.')">Leer más</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <div class="card-noticia">
+            <img src="assets/banner.jpg" alt="Noticia Salud y Deporte">
+            <div class="card-noticia-body">
+              <span class="noticia-fecha"><i class="bi bi-calendar3 me-1"></i>05 SEP 2026</span>
+              <h5 class="noticia-titulo">Programas de Salud y Deporte</h5>
+              <p class="noticia-desc">Talleres deportivos y operativos de prevención cardiovascular gratuitos para vecinos de todas las edades.</p>
+              <button class="btn btn-sm btn-naranja" (click)="abrirModal('Programas de Salud y Deporte', 'El CESFAM Río Claro continúa con sus exámenes de medicina preventiva del adulto (EMPA) y talleres recreativos en el gimnasio municipal.')">Leer más</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- Modal Rápido Nativo Angular -->
+@if (modalAbierto()) {
+  <div class="modal-backdrop-custom" (click)="cerrarModal()">
+    <div class="modal-dialog-custom" (click)="$event.stopPropagation()">
+      <div class="modal-header-custom">
+        <h5 class="m-0 fw-bold">{{ modalTitulo() }}</h5>
+        <button type="button" class="btn-close-custom" (click)="cerrarModal()">&times;</button>
+      </div>
+      <div class="modal-body-custom">
+        <p class="mb-3">{{ modalTexto() }}</p>
+        <div class="p-3 bg-light rounded-3 border">
+          <small class="text-muted d-block">
+            <i class="bi bi-info-circle text-primary me-1"></i> Ilustre Municipalidad de Río Claro - Cumpeo, Región del Maule.
+          </small>
+        </div>
+      </div>
+      <div class="modal-footer-custom">
+        <button type="button" class="btn btn-naranja btn-sm px-4" (click)="cerrarModal()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+}
+
+<app-footer></app-footer>

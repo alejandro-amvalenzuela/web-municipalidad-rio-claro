@@ -1,0 +1,123 @@
+<app-header></app-header>
+
+<div class="link-home">
+  <figure class="m-0 mb-2">
+    <img src="assets/logoRioClaro.png" alt="Logo Río Claro" />
+  </figure>
+  <ol>
+    <li><a routerLink="/">Inicio</a></li>
+    <li class="lkm">&gt;&gt;</li>
+    <li>Bases Concursos Públicos</li>
+  </ol>
+</div>
+
+<main class="container my-4">
+  <!-- Encabezado -->
+  <div class="text-center mb-5">
+    <img src="assets/muni.png" alt="Logo Municipalidad de Río Claro" style="max-height:85px; margin-bottom: 12px;">
+    <h1 class="fw-bold text-municipal mb-1">Bases Concursos Públicos</h1>
+    <p class="text-muted">Convocatorias laborales, llamado a cargos y procesos de selección de la Municipalidad de Río Claro</p>
+  </div>
+
+  <!-- Botones de Filtro -->
+  <div class="d-flex justify-content-center gap-2 mb-5 flex-wrap">
+    <button 
+      class="btn px-4 py-2 rounded-pill fw-semibold" 
+      [class.btn-naranja]="filtroActual() === 'todos'"
+      [class.btn-outline-secondary]="filtroActual() !== 'todos'"
+      (click)="cambiarFiltro('todos')">
+      Todos ({{ concursos.length }})
+    </button>
+    <button 
+      class="btn px-4 py-2 rounded-pill fw-semibold" 
+      [class.btn-success]="filtroActual() === 'vigente'"
+      [class.btn-outline-success]="filtroActual() !== 'vigente'"
+      (click)="cambiarFiltro('vigente')">
+      <i class="bi bi-clock-fill me-1"></i> Vigentes
+    </button>
+    <button 
+      class="btn px-4 py-2 rounded-pill fw-semibold" 
+      [class.btn-secondary]="filtroActual() === 'resuelto'"
+      [class.btn-outline-secondary]="filtroActual() !== 'resuelto'"
+      (click)="cambiarFiltro('resuelto')">
+      <i class="bi bi-check2-all me-1"></i> Resueltos
+    </button>
+  </div>
+
+  <!-- Lista de Concursos -->
+  <div class="row g-3 mb-5">
+    @for (concurso of concursosFiltrados(); track concurso.id) {
+      <div class="col-12">
+        <div class="card card-concurso border-0 shadow-sm rounded-4 p-4 d-flex flex-row align-items-center justify-content-between flex-wrap gap-3">
+          <div class="d-flex align-items-center gap-3 flex-grow-1">
+            <div class="concurso-icon-box">
+              <i class="bi bi-file-earmark-text-fill fs-2 text-naranja"></i>
+            </div>
+            <div>
+              <div class="d-flex align-items-center gap-2 mb-1 flex-wrap">
+                <h5 class="mb-0 fw-bold text-municipal">{{ concurso.titulo }}</h5>
+                @if (concurso.estado === 'vigente') {
+                  <span class="badge rounded-pill bg-success px-3">Vigente</span>
+                } @else {
+                  <span class="badge rounded-pill bg-secondary px-3">Resuelto</span>
+                }
+              </div>
+              <p class="mb-1 text-muted small">{{ concurso.descripcion }}</p>
+              <small class="text-secondary">
+                <i class="bi bi-calendar-event me-1"></i> Cierre: <strong>{{ concurso.fechaCierre }}</strong>
+              </small>
+            </div>
+          </div>
+
+          <div>
+            <button class="btn btn-naranja px-4 py-2 rounded-pill fw-semibold" (click)="verBases(concurso)">
+              <i class="bi bi-eye-fill me-1"></i> Ver Bases y Requisitos
+            </button>
+          </div>
+        </div>
+      </div>
+    } @empty {
+      <div class="col-12 text-center py-5">
+        <p class="text-muted">No se encontraron concursos con el filtro seleccionado.</p>
+      </div>
+    }
+  </div>
+</main>
+
+<!-- Modal con Bases del Concurso -->
+@if (modalAbierto() && concursoSeleccionado()) {
+  <div class="modal-backdrop-custom" (click)="cerrarModal()">
+    <div class="modal-dialog-custom modal-lg-custom" (click)="$event.stopPropagation()">
+      <div class="modal-header-custom">
+        <h5 class="m-0 fw-bold">{{ concursoSeleccionado()?.titulo }}</h5>
+        <button type="button" class="btn-close-custom" (click)="cerrarModal()">&times;</button>
+      </div>
+      <div class="modal-body-custom">
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <span class="badge" [class.bg-success]="concursoSeleccionado()?.estado === 'vigente'" [class.bg-secondary]="concursoSeleccionado()?.estado === 'resuelto'">
+            {{ concursoSeleccionado()?.estado === 'vigente' ? 'Proceso Abierto' : 'Proceso Resuelto' }}
+          </span>
+          <span class="text-muted small">Cierre: {{ concursoSeleccionado()?.fechaCierre }}</span>
+        </div>
+
+        <h6 class="fw-bold text-municipal mb-2">Descripción del Cargo:</h6>
+        <p class="text-muted mb-4">{{ concursoSeleccionado()?.descripcion }}</p>
+
+        <h6 class="fw-bold text-municipal mb-2">Bases Oficiales y Procedimiento:</h6>
+        <div class="p-3 bg-light rounded-3 border mb-3">
+          <p class="mb-0 small leading-relaxed">{{ concursoSeleccionado()?.detalleBases }}</p>
+        </div>
+
+        <div class="alert alert-info py-2 px-3 small border-0 rounded-3 mb-0">
+          <i class="bi bi-info-circle-fill me-1"></i> Recuerde que todos los antecedentes deben ser digitalizados o entregados en sobre cerrado en dependencias municipales según corresponda.
+        </div>
+      </div>
+      <div class="modal-footer-custom gap-2">
+        <button type="button" class="btn btn-outline-secondary btn-sm px-3" (click)="cerrarModal()">Cerrar</button>
+        <button type="button" class="btn btn-naranja btn-sm px-4" (click)="cerrarModal()">Descargar Bases (PDF)</button>
+      </div>
+    </div>
+  </div>
+}
+
+<app-footer></app-footer>

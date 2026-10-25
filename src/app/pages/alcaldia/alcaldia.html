@@ -1,0 +1,104 @@
+<app-header></app-header>
+
+<div class="link-home">
+  <figure class="m-0 mb-2">
+    <img src="assets/logoRioClaro.png" alt="Logo Río Claro" />
+  </figure>
+  <ol>
+    <li><a routerLink="/">Inicio</a></li>
+    <li class="lkm">&gt;&gt;</li>
+    <li>Municipio</li>
+    <li class="lkm">&gt;&gt;</li>
+    <li>Alcaldía</li>
+  </ol>
+</div>
+
+<main class="container my-4">
+  <!-- Hero Alcalde -->
+  <section class="alcalde-hero p-4 p-md-5 rounded-4 shadow-sm mb-5">
+    <div class="row align-items-center g-4">
+      <div class="col-12 col-md-7">
+        <span class="badge bg-naranja-pill mb-2">Alcaldía de Río Claro</span>
+        <h1 class="fw-bold text-white display-5 mb-3">Américo Guajardo Oyarce</h1>
+        <div class="cargo-card p-3 rounded-3 mb-3">
+          <div class="role-title">ALCALDE DE LA I. MUNICIPALIDAD DE RÍO CLARO</div>
+          <div class="role-place"><i class="bi bi-geo-alt-fill me-1"></i> Edificio Municipal, Cumpeo</div>
+        </div>
+        <p class="text-white-50 mb-0">
+          Liderando con compromiso, cercanía y visión de futuro el desarrollo de toda nuestra comunidad rural y urbana.
+        </p>
+      </div>
+      <div class="col-12 col-md-5 text-center">
+        <div class="foto-alcalde-frame">
+          <img src="assets/FOTO-ALCALDE.jpg" alt="Alcalde Américo Guajardo Oyarce" class="img-fluid rounded-4 shadow">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Palabras de Bienvenida -->
+  <section class="card border-0 shadow-sm rounded-4 p-4 p-md-5 mb-5 bg-white">
+    <span class="text-naranja fw-bold text-uppercase small letter-spacing">Mensaje a la Comunidad</span>
+    <h2 class="fw-bold text-municipal mb-4">Palabras de Bienvenida</h2>
+    
+    <div class="lead-text mb-3">
+      Estimados amigos y amigas de mi querido Río Claro: Aprovecho esta oportunidad para saludarles afectuosamente y darles la más cordial bienvenida a esta ventana virtual de nuestra comuna.
+    </div>
+
+    <p class="text-muted leading-relaxed">
+      Las nuevas tecnologías de la información y la comunicación brindan una gran oportunidad para fortalecer la integración comunal y la cercanía con el vecino. A través de este portal acercamos aún más el municipio a nuestra gente: aquí podrán acceder al pago de permisos de circulación, canalizar sus denuncias, informarse sobre concursos públicos y los distintos programas que ponemos a su entera disposición.
+    </p>
+
+    <p class="text-muted leading-relaxed">
+      Estoy convencido que con visión de futuro, trabajo constante, unidad y vocación de servicio, continuaremos construyendo el Río Claro próspero que todos soñamos.
+    </p>
+
+    <div class="mt-4 pt-3 border-top d-flex flex-column">
+      <strong class="text-municipal fs-5">Américo Guajardo Oyarce</strong>
+      <span class="text-naranja fw-semibold">Alcalde de la Ilustre Municipalidad de Río Claro</span>
+      <small class="text-muted">"Obras y No Palabras"</small>
+    </div>
+  </section>
+
+  <!-- Equipo de Alcaldía -->
+  <section class="mb-5">
+    <div class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-2">
+      <h2 class="fw-bold text-municipal mb-0">
+        <i class="bi bi-people-fill me-2 text-naranja"></i>Equipo de Gestión y Gabinete
+      </h2>
+      <span class="badge bg-light text-dark border">Administración Municipal</span>
+    </div>
+
+    <div class="row g-4">
+      @for (persona of equipo; track persona.nombre) {
+        <div class="col-12 col-md-6">
+          <div class="card card-equipo h-100 border-0 shadow-sm rounded-4 p-4">
+            <div class="d-flex align-items-start gap-3">
+              <div class="initials-badge">
+                {{ persona.iniciales }}
+              </div>
+              <div class="flex-grow-1">
+                <span class="badge-cargo">{{ persona.cargo }}</span>
+                <h4 class="fw-bold text-municipal mb-2">{{ persona.nombre }}</h4>
+                <div class="equipo-meta mb-1">
+                  <i class="bi bi-telephone text-naranja me-1"></i> {{ persona.telefono }}
+                </div>
+                <div class="equipo-meta mb-1">
+                  <i class="bi bi-envelope text-naranja me-1"></i> {{ persona.email }}
+                </div>
+                <div class="equipo-meta mb-3">
+                  <i class="bi bi-building text-naranja me-1"></i> {{ persona.lugar }}
+                </div>
+                <p class="small text-muted mb-0">
+                  {{ persona.descripcion }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+</main>
+
+<app-footer></app-footer>

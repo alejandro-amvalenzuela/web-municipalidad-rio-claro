@@ -1,0 +1,11 @@
+.patente-pill {
+  background: #ffffff;
+  color: var(--color-principal);
+  font-weight: 800;
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+  padding: 0.35rem 1.25rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  border: 2px solid var(--color-naranja);
+}

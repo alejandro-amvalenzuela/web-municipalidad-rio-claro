@@ -1,0 +1,110 @@
+<app-header></app-header>
+
+<div class="link-home">
+  <figure class="m-0 mb-2">
+    <img src="assets/logoRioClaro.png" alt="Logo Río Claro" />
+  </figure>
+  <ol>
+    <li><a routerLink="/">Inicio</a></li>
+    <li class="lkm">&gt;&gt;</li>
+    <li><a routerLink="/pagos">Pagos en Línea</a></li>
+    <li class="lkm">&gt;&gt;</li>
+    <li>Pasarela de Pago</li>
+  </ol>
+</div>
+
+<main class="container my-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-7">
+      
+      @if (mensajeError) {
+        <div class="alert alert-danger shadow-sm rounded-4 p-4 text-center">
+          <i class="bi bi-exclamation-triangle-fill fs-2 text-danger d-block mb-2"></i>
+          {{ mensajeError }}
+          <div class="mt-3">
+            <a routerLink="/busqueda" class="btn btn-sm btn-outline-danger">Volver a buscar</a>
+          </div>
+        </div>
+      }
+
+      @if (permiso && vehiculo && !mensajeError) {
+        <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-5 bg-white">
+          <div class="card-header bg-municipal text-white p-4">
+            <h2 class="fw-bold mb-0 fs-3">Confirmación de Pago Municipal</h2>
+            <small class="text-white-50">Transacción cifrada - Ilustre Municipalidad de Río Claro</small>
+          </div>
+
+          <div class="card-body p-4 p-md-5">
+            <div class="p-3 bg-light rounded-3 border mb-4">
+              <h5 class="fw-bold text-municipal mb-3">Resumen de la Transacción</h5>
+              <div class="d-flex justify-content-between mb-2">
+                <span class="text-muted">Concepto:</span>
+                <span class="fw-bold">Permiso de Circulación {{ permiso.anio }}</span>
+              </div>
+              <div class="d-flex justify-content-between mb-2">
+                <span class="text-muted">Placa Patente:</span>
+                <strong class="text-municipal">{{ vehiculo.patente }}</strong>
+              </div>
+              <div class="d-flex justify-content-between mb-2">
+                <span class="text-muted">Vehículo:</span>
+                <span>{{ vehiculo.marca }} {{ vehiculo.modelo }} ({{ vehiculo.anio }})</span>
+              </div>
+              <div class="d-flex justify-content-between mb-3">
+                <span class="text-muted">Titular:</span>
+                <span>{{ vehiculo.propietario }}</span>
+              </div>
+              <div class="d-flex justify-content-between pt-3 border-top">
+                <span class="fw-bold fs-5 text-municipal">Monto Total a Cancelar:</span>
+                <span class="fw-bold fs-4 text-success">${{ permiso.monto | number }} CLP</span>
+              </div>
+            </div>
+
+            <!-- Selección simulada de medio de pago -->
+            <h6 class="fw-bold text-muted small text-uppercase mb-3">Medio de Pago</h6>
+            <div class="row g-2 mb-4">
+              <div class="col-4">
+                <div class="p-2 border rounded-3 text-center border-primary bg-primary bg-opacity-10">
+                  <i class="bi bi-credit-card-fill text-primary fs-3 d-block"></i>
+                  <small class="fw-bold">WebPay</small>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="p-2 border rounded-3 text-center bg-light">
+                  <i class="bi bi-bank2 text-secondary fs-3 d-block"></i>
+                  <small class="text-muted">Transferencia</small>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="p-2 border rounded-3 text-center bg-light">
+                  <i class="bi bi-phone-fill text-secondary fs-3 d-block"></i>
+                  <small class="text-muted">MercadoPago</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="alert alert-info py-2 px-3 small rounded-3 mb-4 border-0">
+              <i class="bi bi-lock-fill me-1"></i> Está a punto de realizar el pago simulado. El estado del permiso cambiará a <strong>PAGADO</strong> y se generará un comprobante oficial.
+            </div>
+
+            <div class="d-grid gap-2">
+              <button class="btn btn-naranja py-3 fs-5 fw-bold shadow-sm" [disabled]="procesando" (click)="confirmarPago()">
+                @if (procesando) {
+                  <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                  <span>Procesando pago con la entidad bancaria...</span>
+                } @else {
+                  <i class="bi bi-check-circle-fill me-2"></i> Confirmar y Pagar ${{ permiso.monto | number }}
+                }
+              </button>
+              <button class="btn btn-outline-secondary py-2" [disabled]="procesando" (click)="router.navigate(['/detalle', permiso.patente])">
+                Cancelar y regresar
+              </button>
+            </div>
+          </div>
+        </div>
+      }
+
+    </div>
+  </div>
+</main>
+
+<app-footer></app-footer>
